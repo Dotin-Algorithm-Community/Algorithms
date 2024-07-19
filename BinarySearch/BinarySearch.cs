@@ -2,45 +2,46 @@ public class Program
 {
     public static void BinarySearch(int[] array, int target)
     {
-        int low = array[0];
-        int high = array[^1];
+        int low = 0; // first element
 
-        if (target > high || target < low)
+        int high = array.Length -1; // last element
+
+        if (target > array[high] || target < array[low])
         {
-            Console.WriteLine("Out Of range !");
+            Console.WriteLine("Out Of Range !");
         }
         else
         {
             while (low <= high)
             {
-                int middleElement = (low + high) / 2;
+                int middle = low + (high - low) / 2; // index of middle element
 
-                if (middleElement == target)
+                if (array[middle] == target)
                 {
-                    Console.WriteLine($"Found {middleElement}!");
-                    break;
+                    Console.WriteLine($"Element Value : {array[middle]} & Element Index : {middle}");
+                    return;
                 }
-                else if (middleElement < target)
+                else if (array[middle] > target)
                 {
-                    low = middleElement + 1;
+                    high = middle - 1;
                 }
-                else if (middleElement > target)
+                else if (array[middle] < target)
                 {
-                    high = middleElement - 1;
+                    low = middle + 1;
                 }
             }
         }
-
     }
+
     public static void Main()
     {
-        int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-        int[] array1 = { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
+        int[] array = { 1, 2, 3, 4, 5, 6, 7, 8, 10, 15 };
 
-        //BinarySearch(array, 8);
-        //BinarySearch(array1, 11);
-        BinarySearch(array1, 8);
-
+        BinarySearch(array, 8);
+        BinarySearch(array, 1);
+        BinarySearch(array, 15);
+        BinarySearch(array, 6);
+        BinarySearch(array, 22);
+        BinarySearch(array, 0);
     }
-
 }
